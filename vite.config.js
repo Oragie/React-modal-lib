@@ -8,7 +8,11 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "src/index.jsx"),
       name: "ReactModal",
-      fileName: "react-modal",
+      fileName: (format) => {
+        if (format === "es") return "react-modal.es.js";
+        if (format === "umd") return "react-modal.umd.js";
+        return `react-modal.${format}.js`;
+      },
     },
     rollupOptions: {
       external: ["react", "react-dom"],
