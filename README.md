@@ -1,12 +1,101 @@
-# React + Vite
+# 🧩 react-modal-lib
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, reusable, and accessible modal component for React.
 
-Currently, two official plugins are available:
+> Inspired by [jquery-modal](https://github.com/kylefox/jquery-modal), rebuilt for the modern React ecosystem.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install react-modal-lib
+```
+
+---
+
+## 🚀 Usage
+
+```jsx
+import React, { useState } from "react";
+import { Modal } from "react-modal-lib";
+
+function Example() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open modal</button>
+
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <h2>Hello 👋</h2>
+        <p>This is the content of the modal.</p>
+      </Modal>
+    </>
+  );
+}
+```
+
+---
+
+## 🛠 Props
+
+'
+| Prop | Type | Default | Description |
+| --------------------- | ------------ | ------- | ----------------------------------------- |
+| `isOpen` | `boolean` | — | Controls whether the modal is open |
+| `onClose` | `() => void` | — | Called when the modal should close |
+| `children` | `ReactNode` | — | Modal content |
+| `closeOnOverlayClick` | `boolean` | `true` | Close the modal when clicking the overlay |
+| `closeOnEscape` | `boolean` | `true` | Close the modal when pressing `Escape` |
+| `showCloseButton` | `boolean` | `true` | Show the "×" close button |
+
+'
+
+---
+
+## 🎨 Styling
+
+The modal uses its own internal Modal.css, but you can override styles via classnames:
+
+```css
+.modal-overlay {
+  ...;
+}
+.modal-content {
+  ...;
+}
+.modal-close {
+  ...;
+}
+```
+
+Make sure to import the CSS:
+
+```js
+import "react-modal-lib/dist/style.css";
+```
+
+Or include it via bundler (already included if you use Vite).
+
+---
+
+## 🧪 Local Testing
+
+To test this library locally:
+
+```bash
+# In the library folder
+npm run build
+npm link
+
+# In your React app
+npm link react-modal-lib
+
+```
+
+---
+
+## 📄 License
+
+MIT — free to use and modify.
